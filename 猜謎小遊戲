@@ -1,0 +1,43 @@
+import random
+
+def number_guessing_game():
+    """數字猜謎遊戲"""
+    secret_number = random.randint(1, 100)
+    attempts = 0
+    max_attempts = 7
+    
+    print("=" * 40)
+    print("歡迎來到數字猜謎遊戲！")
+    print("我想了一個1到100之間的數字")
+    print(f"你有 {max_attempts} 次機會猜對它")
+    print("=" * 40)
+    
+    while attempts < max_attempts:
+        try:
+            guess = int(input(f"\n請輸入你的猜測 ({max_attempts - attempts} 次機會剩餘): "))
+            
+            if guess < 1 or guess > 100:
+                print("請輸入1到100之間的數字")
+                continue
+            
+            attempts += 1
+            
+            if guess == secret_number:
+                print(f"\n🎉 恭喜！你在第 {attempts} 次猜對了！")
+                print(f"正確答案是: {secret_number}")
+                break
+            elif guess < secret_number:
+                print(f"❌ 太低了，再猜一次")
+            else:
+                print(f"❌ 太高了，再猜一次")
+                
+        except ValueError:
+            print("請輸入有效的數字")
+    
+    else:
+        print(f"\n😢 遊戲結束！正確答案是: {secret_number}")
+    
+    print("\n感謝遊玩！")
+
+if __name__ == "__main__":
+    number_guessing_game()
